@@ -8,7 +8,7 @@ import org.springframework.boot.autoconfigure.domain.EntityScan;
 
 
 @SpringBootApplication(scanBasePackages = {"com.skytouch"})
-@EntityScan(basePackages = {"com.skytouch.model"})
+//@EntityScan(basePackages = {"com.skytouch.model"})
 @EnableAutoConfiguration
 
 public class MicroserviceApplication {

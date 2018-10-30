@@ -1,6 +1,7 @@
 package com.skytouch.model;
 
 
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Objects;
@@ -16,10 +17,10 @@ import java.util.Objects;
                 procedureName = "insert_product",
                 resultClasses = {ProductEntity.class},
                 parameters = {
-                        @StoredProcedureParameter(mode = ParameterMode.IN, name = "name", type = String.class),
-                        @StoredProcedureParameter(mode = ParameterMode.IN, name = "description", type = String.class),
-                        @StoredProcedureParameter(mode = ParameterMode.IN, name = "unit_price", type = Integer.class),
-                        @StoredProcedureParameter(mode = ParameterMode.IN, name = "quantity", type = Integer.class)
+                        @StoredProcedureParameter(mode = ParameterMode.IN, name = "p_name", type = String.class),
+                        @StoredProcedureParameter(mode = ParameterMode.IN, name = "p_description", type = String.class),
+                        @StoredProcedureParameter(mode = ParameterMode.IN, name = "p_unit_price", type = Integer.class),
+                        @StoredProcedureParameter(mode = ParameterMode.IN, name = "p_quantity", type = Integer.class)
                 }
         )
 })
@@ -40,13 +41,13 @@ public class ProductEntity implements Serializable {
     private Integer unitPrice;
 
     @Column(name = "quantity_per_unit")
-    private Integer quantiryPerUnit;
+    private Integer quantityPerUnit;
 
     public ProductEntity(String name, String description, Integer unitPrice, Integer quantiryPerUnit) {
         this.name = name;
         this.description = description;
         this.unitPrice = unitPrice;
-        this.quantiryPerUnit = quantiryPerUnit;
+        this.quantityPerUnit = quantiryPerUnit;
     }
 
     public ProductEntity() {
@@ -68,8 +69,28 @@ public class ProductEntity implements Serializable {
         return unitPrice;
     }
 
-    public Integer getQuantiryPerUnit() {
-        return quantiryPerUnit;
+    public Integer getQuantityPerUnit() {
+        return quantityPerUnit;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public void setUnitPrice(Integer unitPrice) {
+        this.unitPrice = unitPrice;
+    }
+
+    public void setQuantityPerUnit(Integer quantiryPerUnit) {
+        this.quantityPerUnit = quantiryPerUnit;
     }
 
     @Override
@@ -80,12 +101,12 @@ public class ProductEntity implements Serializable {
         return Objects.equals(name, product.name) &&
                 Objects.equals(description, product.description) &&
                 Objects.equals(unitPrice, product.unitPrice) &&
-                Objects.equals(quantiryPerUnit, product.quantiryPerUnit);
+                Objects.equals(quantityPerUnit, product.quantityPerUnit);
     }
 
     @Override
     public int hashCode() {
 
-        return Objects.hash(name, description, unitPrice, quantiryPerUnit);
+        return Objects.hash(name, description, unitPrice, quantityPerUnit);
     }
 }

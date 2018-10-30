@@ -26,17 +26,16 @@ public class MicroserviceApplicationTests {
     @Autowired
     private ProductRepository productRepository;
 
-    @Autowired
     private DozerBeanMapper mapper;
-
     private Product product;
     private ProductEntity productEntity;
 
     @Before
     public void setupData() {
         product = new Product("insertTest", "Unit Test", 1, 1);
-        productEntity = mapper.map(product, ProductEntity.class);
         mapper = new DozerBeanMapper();
+        productEntity = mapper.map(product, ProductEntity.class);
+
 
     }
 
@@ -55,7 +54,7 @@ public class MicroserviceApplicationTests {
 
     @After
     public void cleanSetupData() {
-        productRepository.delete(productEntity);
+       productRepository.delete(productEntity);
     }
 
 }

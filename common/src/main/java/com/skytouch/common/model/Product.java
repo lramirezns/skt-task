@@ -43,8 +43,32 @@ public class Product implements Serializable {
         return unitPrice;
     }
 
-    public Integer getQuantiryPerUnit() {
+    public Integer getQuantityPerUnit() {
         return quantityPerUnit;
+    }
+
+    public Integer setQuantityPerUnit() {
+        return quantityPerUnit;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public void setUnitPrice(Integer unitPrice) {
+        this.unitPrice = unitPrice;
+    }
+
+    public void setQuantityPerUnit(Integer quantityPerUnit) {
+        this.quantityPerUnit = quantityPerUnit;
     }
 
     @Override

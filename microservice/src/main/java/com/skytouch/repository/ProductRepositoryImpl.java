@@ -24,10 +24,10 @@ public class ProductRepositoryImpl implements ProductRepositoryCustom {
     @Override
     public Long addProduct(ProductEntity product) {
         StoredProcedureQuery storedProcedure = entityManager.createNamedStoredProcedureQuery("insert_product")
-                .setParameter("name", product.getName())
-                .setParameter("description", product.getDescription())
-                .setParameter("unit_price", product.getUnitPrice())
-                .setParameter("quantity", product.getQuantiryPerUnit());
+                .setParameter("p_name", product.getName())
+                .setParameter("p_description", product.getDescription())
+                .setParameter("p_unit_price", product.getUnitPrice())
+                .setParameter("p_quantity", product.getQuantityPerUnit());
 
         ProductEntity result = (ProductEntity) storedProcedure.getSingleResult();
         return result.getId();
