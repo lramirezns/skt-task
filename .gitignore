@@ -1,6 +1,11 @@
-#idea Folder
+## Idea Folder
 **.idea/**
 
-# target folder
+## target folder
 /target/**
+/.DS_Store
 
+## Maven
+/mvnw
+/mvnw.cmd
+mvnw/*
