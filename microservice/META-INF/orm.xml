@@ -5,7 +5,7 @@
                  version="2.0">
     <description>My First JPA XML Application</description>
     <package>entity</package> 
-    <entity class="com.skytouch.model.Product" name="Product">
+    <entity class="com.skytouch.common.model.Product" name="Product">
         <table name="product"/>
         <attributes>
             <id name="id">

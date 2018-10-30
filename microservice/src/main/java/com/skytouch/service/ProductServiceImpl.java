@@ -1,32 +1,38 @@
 package com.skytouch.service;
 
 
-import com.fasterxml.jackson.databind.ObjectMapper;
+import com.skytouch.common.model.Product;
+import com.skytouch.model.ProductEntity;
 import com.skytouch.repository.ProductRepository;
-import com.skytouch.converter.JsonConverter;
-import com.skytouch.model.Product;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.dozer.DozerBeanMapper;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
+import java.util.stream.Collectors;
 
 
 @Service
 public class ProductServiceImpl implements ProductService {
 
     private final ProductRepository productRepository;
+    private final DozerBeanMapper mapper;
 
-    @Autowired
+
     public ProductServiceImpl(ProductRepository productRepository) {
         this.productRepository = productRepository;
+        this.mapper = new DozerBeanMapper();
     }
 
     @Override
-    public String getProducts() {
-        return JsonConverter.objectToJson(productRepository.getProducts(), new ObjectMapper());
+    public List<Product> getProducts() {
+        List<Product> result =
+                productRepository.getProducts().stream().map(prod -> mapper.map(prod, Product.class)).collect(Collectors.toList());
+        return result;
     }
 
     @Override
-    public Boolean addProduct(Product product) {
-        return productRepository.addProduct(product);
+    public Long addProduct(Product product) {
+        return productRepository.addProduct(mapper.map(product, ProductEntity.class));
     }
 
 }

@@ -1,7 +1,9 @@
 package com.skytouch.model;
 
+
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.Objects;
 
 @Entity
 @Table(name = "product")
@@ -9,10 +11,10 @@ import java.io.Serializable;
 @NamedStoredProcedureQueries({
         @NamedStoredProcedureQuery(name = "get_products",
                 procedureName = "get_products",
-                resultClasses = Product.class),
+                resultClasses = ProductEntity.class),
         @NamedStoredProcedureQuery(name = "insert_product",
                 procedureName = "insert_product",
-                resultClasses = {Product.class},
+                resultClasses = {ProductEntity.class},
                 parameters = {
                         @StoredProcedureParameter(mode = ParameterMode.IN, name = "name", type = String.class),
                         @StoredProcedureParameter(mode = ParameterMode.IN, name = "description", type = String.class),
@@ -21,7 +23,7 @@ import java.io.Serializable;
                 }
         )
 })
-public class Product implements Serializable {
+public class ProductEntity implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -40,15 +42,19 @@ public class Product implements Serializable {
     @Column(name = "quantity_per_unit")
     private Integer quantiryPerUnit;
 
-    public Product(String name, String description, Integer unitPrice, Integer quantiryPerUnit) {
+    public ProductEntity(String name, String description, Integer unitPrice, Integer quantiryPerUnit) {
         this.name = name;
         this.description = description;
         this.unitPrice = unitPrice;
         this.quantiryPerUnit = quantiryPerUnit;
     }
-    public Product(){}
 
-    public Long getId() { return id; }
+    public ProductEntity() {
+    }
+
+    public Long getId() {
+        return id;
+    }
 
     public String getName() {
         return name;
@@ -66,5 +72,20 @@ public class Product implements Serializable {
         return quantiryPerUnit;
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof ProductEntity)) return false;
+        ProductEntity product = (ProductEntity) o;
+        return Objects.equals(name, product.name) &&
+                Objects.equals(description, product.description) &&
+                Objects.equals(unitPrice, product.unitPrice) &&
+                Objects.equals(quantiryPerUnit, product.quantiryPerUnit);
+    }
 
+    @Override
+    public int hashCode() {
+
+        return Objects.hash(name, description, unitPrice, quantiryPerUnit);
+    }
 }

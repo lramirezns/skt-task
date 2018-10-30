@@ -1,11 +1,26 @@
 package com.skytouch.repository;
 
-import java.util.List;
-import com.skytouch.model.Product;
+import com.skytouch.model.ProductEntity;
 
+import java.util.List;
+
+/**
+ * Manage Product stored procedures
+ */
 public interface ProductRepositoryCustom {
 
-    List<Product> getProducts();
+    /**
+     * Obtains all products from the database calling the store procedure get_products
+     *
+     * @return List of products
+     */
+    List<ProductEntity> getProducts();
 
-    Boolean addProduct(Product product);
+    /**
+     * Calls store procedure insert_product and inserts a product in the database.
+     *
+     * @param product
+     * @return the id of this created product.
+     */
+    Long addProduct(ProductEntity product);
 }
