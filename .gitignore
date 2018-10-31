@@ -1,6 +1,6 @@
 ## Idea Folder
 **.idea/**
-
+.idea/
 ## target folder
 /target/**
 /.DS_Store
