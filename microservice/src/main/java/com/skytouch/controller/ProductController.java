@@ -1,15 +1,14 @@
 package com.skytouch.controller;
 
 
-import com.skytouch.service.ProductService;
 import com.skytouch.common.model.Product;
+import com.skytouch.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
-
 
 import java.util.List;
 
@@ -24,7 +23,7 @@ public class ProductController {
         this.productService = productService;
     }
 
-    @RequestMapping(name = "/insertProduct", method = RequestMethod.PUT)
+    @PutMapping(name = "/insertProduct")
     @ResponseBody
     public Long insertProduct(
             @RequestParam("product") Product product) {
@@ -32,7 +31,7 @@ public class ProductController {
     }
 
 
-    @RequestMapping(value = "/products", method = RequestMethod.GET)
+    @GetMapping(value = "/products")
     public List<Product> getProducts() {
         return productService.getProducts();
 

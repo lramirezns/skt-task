@@ -9,3 +9,7 @@
 /mvnw
 /mvnw.cmd
 mvnw/*
+.idea/workspace.xml
+*.class
+*.class
+*.class

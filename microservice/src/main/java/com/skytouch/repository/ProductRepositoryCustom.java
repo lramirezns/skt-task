@@ -22,5 +22,6 @@ public interface ProductRepositoryCustom {
      * @param product
      * @return the id of this created product.
      */
+
     Long addProduct(ProductEntity product);
 }
