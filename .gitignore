@@ -17,5 +17,3 @@ common/target/.DS_Store
 mvnw/*
 *.class
 
-.idea/workspace.xml
-*.class
