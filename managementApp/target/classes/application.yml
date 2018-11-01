@@ -1,0 +1,17 @@
+spring:
+  rabbitmq:
+    host: localhost
+    port: 5672
+    username: guest
+    password: guest
+product:
+  rabbitmq:
+    insertExchange: product-exchange
+    insertQueue: insertProduct-queue
+    insertRoutingkey: insertRoutingkey
+    getProductsExchange: getProductsExchange
+    getProductsQueue: getProductsQueue
+    getProductsRoutingkey: getProductsRoutingkey
+    getProductsMessage: getProducts
+
+server.port: 3000

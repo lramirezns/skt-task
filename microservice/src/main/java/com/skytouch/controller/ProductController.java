@@ -1,7 +1,7 @@
 package com.skytouch.controller;
 
 
-import com.skytouch.common.model.Product;
+import com.skytouch.model.Product;
 import com.skytouch.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -30,11 +30,9 @@ public class ProductController {
         return productService.addProduct(product);
     }
 
-
     @GetMapping(value = "/products")
     public List<Product> getProducts() {
         return productService.getProducts();
-
     }
 
 }

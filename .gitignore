@@ -1,15 +1,21 @@
 ## Idea Folder
+
 **.idea/**
+.idea/workspace.xml
 .idea/
+
 ## target folder
+
 /target/**
 /.DS_Store
+common/target/.DS_Store
 
 ## Maven
+
 /mvnw
 /mvnw.cmd
 mvnw/*
+*.class
+
 .idea/workspace.xml
-*.class
-*.class
 *.class

@@ -1,7 +1,7 @@
 package com.skytouch.service;
 
 
-import com.skytouch.common.model.Product;
+import com.skytouch.model.Product;
 import com.skytouch.model.ProductEntity;
 import com.skytouch.repository.ProductRepository;
 import org.dozer.DozerBeanMapper;

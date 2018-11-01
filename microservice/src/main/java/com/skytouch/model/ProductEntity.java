@@ -1,7 +1,6 @@
 package com.skytouch.model;
 
 
-
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Objects;

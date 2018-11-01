@@ -1,7 +1,6 @@
 package com.skytouch.repository;
 
 import com.skytouch.model.ProductEntity;
-import org.springframework.jdbc.core.JdbcTemplate;
 
 import javax.persistence.EntityManager;
 import javax.persistence.StoredProcedureQuery;
