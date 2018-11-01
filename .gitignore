@@ -22,3 +22,6 @@ managementApp/mvnw.cmd
 *.class
 
 
+microservice/target/test-classes/application.properties
+managementApp/target/classes/application.yml
+microservice/target/classes/application.yml
