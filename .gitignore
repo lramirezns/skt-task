@@ -2,7 +2,7 @@
 
 **.idea/**
 .idea/workspace.xml
-.idea/
+.idea/*
 
 ## target folder
 
@@ -15,5 +15,10 @@ common/target/.DS_Store
 /mvnw
 /mvnw.cmd
 mvnw/*
+managementApp/mvnw
+managementApp/mvnw.cmd
+
+
 *.class
+
 
