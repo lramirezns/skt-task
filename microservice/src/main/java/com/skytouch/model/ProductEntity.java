@@ -28,7 +28,7 @@ public class ProductEntity implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id")
-    private Long id;
+    private long id;
 
     @Column(name = "name")
     private String name;
@@ -37,12 +37,12 @@ public class ProductEntity implements Serializable {
     private String description;
 
     @Column(name = "unit_price")
-    private Integer unitPrice;
+    private long unitPrice;
 
     @Column(name = "quantity_per_unit")
-    private Integer quantityPerUnit;
+    private int quantityPerUnit;
 
-    public ProductEntity(String name, String description, Integer unitPrice, Integer quantiryPerUnit) {
+    public ProductEntity(String name, String description, long unitPrice, int quantiryPerUnit) {
         this.name = name;
         this.description = description;
         this.unitPrice = unitPrice;
@@ -52,7 +52,7 @@ public class ProductEntity implements Serializable {
     public ProductEntity() {
     }
 
-    public Long getId() {
+    public long getId() {
         return id;
     }
 
@@ -64,15 +64,15 @@ public class ProductEntity implements Serializable {
         return description;
     }
 
-    public Integer getUnitPrice() {
+    public long getUnitPrice() {
         return unitPrice;
     }
 
-    public Integer getQuantityPerUnit() {
+    public int getQuantityPerUnit() {
         return quantityPerUnit;
     }
 
-    public void setId(Long id) {
+    public void setId(long id) {
         this.id = id;
     }
 
@@ -84,28 +84,12 @@ public class ProductEntity implements Serializable {
         this.description = description;
     }
 
-    public void setUnitPrice(Integer unitPrice) {
+    public void setUnitPrice(int unitPrice) {
         this.unitPrice = unitPrice;
     }
 
-    public void setQuantityPerUnit(Integer quantiryPerUnit) {
+    public void setQuantityPerUnit(int quantiryPerUnit) {
         this.quantityPerUnit = quantiryPerUnit;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof ProductEntity)) return false;
-        ProductEntity product = (ProductEntity) o;
-        return Objects.equals(name, product.name) &&
-                Objects.equals(description, product.description) &&
-                Objects.equals(unitPrice, product.unitPrice) &&
-                Objects.equals(quantityPerUnit, product.quantityPerUnit);
-    }
-
-    @Override
-    public int hashCode() {
-
-        return Objects.hash(name, description, unitPrice, quantityPerUnit);
-    }
 }

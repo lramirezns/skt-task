@@ -32,7 +32,7 @@ public class MicroserviceApplicationTests {
 
     @Before
     public void setupData() {
-        product = new Product("insertTest", "Unit Test", 1, 1);
+        product = new Product("insertTest", "Unit Test", 1D, 1);
         mapper = new DozerBeanMapper();
         productEntity = mapper.map(product, ProductEntity.class);
 

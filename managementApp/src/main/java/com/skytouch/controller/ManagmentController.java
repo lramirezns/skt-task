@@ -20,7 +20,7 @@ public class ManagmentController {
 
     @GetMapping("/addProduct")
     public Long addProduct(@RequestParam("name") String name, @RequestParam("description") String description,
-                           @RequestParam("unitPrice") Integer unitPrice, @RequestParam("quantity") Integer quantity) {
+                           @RequestParam("unitPrice") Double unitPrice, @RequestParam("quantity") Integer quantity) {
 
         Product product = new Product(name, description, unitPrice, quantity);
         return productMessageSender.insertProduct(product);

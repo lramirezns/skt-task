@@ -4,24 +4,23 @@ import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 import java.io.Serializable;
-import java.util.Objects;
 
 
 @JsonIdentityInfo(generator = ObjectIdGenerators.IntSequenceGenerator.class, property = "@id", scope = Product.class)
 public class Product implements Serializable {
 
 
-    private Long id;
+    private long id;
 
     private String name;
 
     private String description;
 
-    private Integer unitPrice;
+    private double unitPrice;
 
-    private Integer quantityPerUnit;
+    private int quantityPerUnit;
 
-    public Product(String name, String description, Integer unitPrice, Integer quantityPerUnit) {
+    public Product(String name, String description, double unitPrice, int quantityPerUnit) {
         this.name = name;
         this.description = description;
         this.unitPrice = unitPrice;
@@ -31,7 +30,7 @@ public class Product implements Serializable {
     public Product() {
     }
 
-    public Long getId() {
+    public long getId() {
         return id;
     }
 
@@ -43,19 +42,19 @@ public class Product implements Serializable {
         return description;
     }
 
-    public Integer getUnitPrice() {
+    public double getUnitPrice() {
         return unitPrice;
     }
 
-    public Integer getQuantityPerUnit() {
+    public int getQuantityPerUnit() {
         return quantityPerUnit;
     }
 
-    public Integer setQuantityPerUnit() {
+    public int setQuantityPerUnit() {
         return quantityPerUnit;
     }
 
-    public void setId(Long id) {
+    public void setId(long id) {
         this.id = id;
     }
 
@@ -67,28 +66,12 @@ public class Product implements Serializable {
         this.description = description;
     }
 
-    public void setUnitPrice(Integer unitPrice) {
+    public void setUnitPrice(double unitPrice) {
         this.unitPrice = unitPrice;
     }
 
-    public void setQuantityPerUnit(Integer quantityPerUnit) {
+    public void setQuantityPerUnit(int quantityPerUnit) {
         this.quantityPerUnit = quantityPerUnit;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof Product)) return false;
-        Product product = (Product) o;
-        return Objects.equals(name, product.name) &&
-                Objects.equals(description, product.description) &&
-                Objects.equals(unitPrice, product.unitPrice) &&
-                Objects.equals(quantityPerUnit, product.quantityPerUnit);
-    }
-
-    @Override
-    public int hashCode() {
-
-        return Objects.hash(name, description, unitPrice, quantityPerUnit);
-    }
 }
