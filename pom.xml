@@ -7,6 +7,10 @@
     <artifactId>gs-multi-module</artifactId>
     <version>0.1.0</version>
     <packaging>pom</packaging>
+    <properties>
+        <spring-boot.version>1.5.7.RELEASE</spring-boot.version>
+        <cobertura-maven-plugin.version>2.7</cobertura-maven-plugin.version>
+    </properties>
 
     <modules>
         <module>common</module>

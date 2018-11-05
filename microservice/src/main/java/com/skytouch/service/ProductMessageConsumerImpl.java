@@ -10,13 +10,13 @@ import java.util.List;
 @Service
 public class ProductMessageConsumerImpl implements ProductMessageConsumer {
 
-    ProductService productService;
+    private final ProductService productService;
 
-    @Value("${product.rabbitmq.getProductsMessage}")
-    private String getProductsMessage;
+    private final String getProductsMessage;
 
-    public ProductMessageConsumerImpl(ProductService productService) {
+    public ProductMessageConsumerImpl(ProductService productService, @Value("${product.rabbitmq.getProductsMessage}") String getProductsMessage) {
         this.productService = productService;
+        this.getProductsMessage = getProductsMessage;
     }
 
     @Override
@@ -28,10 +28,7 @@ public class ProductMessageConsumerImpl implements ProductMessageConsumer {
     @Override
     @RabbitListener(queues = "${product.rabbitmq.getProductsQueue}", containerFactory = "productFactory")
     public List<Product> getProducts(String message) {
-        if (getProductsMessage.equals(message)) {
-            return productService.getProducts();
-        }
-        return null;
+        return getProductsMessage.equals(message) ? productService.getProducts() : null;
     }
 
 }

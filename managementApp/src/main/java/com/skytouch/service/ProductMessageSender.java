@@ -1,4 +1,4 @@
-package com.skytouch.Service;
+package com.skytouch.service;
 
 
 import com.skytouch.model.Product;

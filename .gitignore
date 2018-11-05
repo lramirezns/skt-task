@@ -32,3 +32,7 @@ microservice/mvnw.cmd
 microservice/.DS_Store
 
 *.iml
+common/target/common-library-0.0.1-SNAPSHOT.jar
+common/target/common-library-0.0.1-SNAPSHOT.jar.original
+*.lst
+common/target/maven-archiver/pom.properties

@@ -18,7 +18,7 @@ import java.util.Objects;
                 parameters = {
                         @StoredProcedureParameter(mode = ParameterMode.IN, name = "p_name", type = String.class),
                         @StoredProcedureParameter(mode = ParameterMode.IN, name = "p_description", type = String.class),
-                        @StoredProcedureParameter(mode = ParameterMode.IN, name = "p_unit_price", type = Integer.class),
+                        @StoredProcedureParameter(mode = ParameterMode.IN, name = "p_unit_price", type = Double.class),
                         @StoredProcedureParameter(mode = ParameterMode.IN, name = "p_quantity", type = Integer.class)
                 }
         )
@@ -37,16 +37,16 @@ public class ProductEntity implements Serializable {
     private String description;
 
     @Column(name = "unit_price")
-    private long unitPrice;
+    private double unitPrice;
 
     @Column(name = "quantity_per_unit")
     private int quantityPerUnit;
 
-    public ProductEntity(String name, String description, long unitPrice, int quantiryPerUnit) {
+    public ProductEntity(String name, String description, double unitPrice, int quantityPerUnit) {
         this.name = name;
         this.description = description;
         this.unitPrice = unitPrice;
-        this.quantityPerUnit = quantiryPerUnit;
+        this.quantityPerUnit = quantityPerUnit;
     }
 
     public ProductEntity() {
@@ -64,7 +64,7 @@ public class ProductEntity implements Serializable {
         return description;
     }
 
-    public long getUnitPrice() {
+    public double getUnitPrice() {
         return unitPrice;
     }
 
@@ -84,7 +84,7 @@ public class ProductEntity implements Serializable {
         this.description = description;
     }
 
-    public void setUnitPrice(int unitPrice) {
+    public void setUnitPrice(double unitPrice) {
         this.unitPrice = unitPrice;
     }
 
@@ -92,4 +92,20 @@ public class ProductEntity implements Serializable {
         this.quantityPerUnit = quantiryPerUnit;
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof ProductEntity)) return false;
+        ProductEntity that = (ProductEntity) o;
+        return Double.compare(that.unitPrice, unitPrice) == 0 &&
+                quantityPerUnit == that.quantityPerUnit &&
+                Objects.equals(name, that.name) &&
+                Objects.equals(description, that.description);
+    }
+
+    @Override
+    public int hashCode() {
+
+        return Objects.hash(name, description, unitPrice, quantityPerUnit);
+    }
 }

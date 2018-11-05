@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 import java.io.Serializable;
+import java.util.Objects;
 
 
 @JsonIdentityInfo(generator = ObjectIdGenerators.IntSequenceGenerator.class, property = "@id", scope = Product.class)
@@ -74,4 +75,20 @@ public class Product implements Serializable {
         this.quantityPerUnit = quantityPerUnit;
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Product)) return false;
+        Product product = (Product) o;
+        return Double.compare(product.unitPrice, unitPrice) == 0 &&
+                quantityPerUnit == product.quantityPerUnit &&
+                Objects.equals(name, product.name) &&
+                Objects.equals(description, product.description);
+    }
+
+    @Override
+    public int hashCode() {
+
+        return Objects.hash(name, description, unitPrice, quantityPerUnit);
+    }
 }
