@@ -1,6 +1,6 @@
 spring:
   datasource:
-    url: jdbc:postgresql://localhost/skt_task
+    url: jdbc:postgresql://localhost:5433/skt_task_v
     username: postgres
     password: wertyta13
 
