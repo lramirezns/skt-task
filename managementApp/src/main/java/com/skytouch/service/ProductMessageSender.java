@@ -7,7 +7,7 @@ import java.util.List;
 
 public interface ProductMessageSender {
 
-    Long insertProduct(Product product);
+    void insertProduct(Product product);
 
     List<Product> getProducts();
 }

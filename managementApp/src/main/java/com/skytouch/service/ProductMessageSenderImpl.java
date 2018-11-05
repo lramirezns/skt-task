@@ -33,9 +33,9 @@ public class ProductMessageSenderImpl implements ProductMessageSender {
     private String getProductsMessage;
 
     @Override
-    public Long insertProduct(Product product) {
+    public void insertProduct(Product product) {
         Long id = (Long) amqpTemplate.convertSendAndReceive(insertExchange, insertRoutingkey, product);
-        return id;
+        if (id == 0) throw new RuntimeException();
     }
 
     @Override

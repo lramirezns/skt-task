@@ -4,6 +4,10 @@ spring:
     port: 5672
     username: guest
     password: guest
+  mvc:
+    view:
+      prefix: /WEB-INF/views/
+      suffix: .jsp
 
 product:
   rabbitmq:

@@ -1,37 +1,42 @@
 package com.skytouch.controller;
 
-import com.skytouch.service.ProductMessageSender;
 import com.skytouch.model.Product;
+import com.skytouch.service.ProductMessageSender;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.ModelAndView;
 
-import java.util.List;
-
-
-@RestController
+@RequestMapping("/managementController")
+@Controller
 public class ManagmentController {
-
     private ProductMessageSender productMessageSender;
-
 
     public ManagmentController(ProductMessageSender managmentService) {
         this.productMessageSender = managmentService;
     }
 
+    @GetMapping("/product")
+    public ModelAndView product() {
+        return new ModelAndView("product", "product", new Product());
+
+    }
+
     @GetMapping("/products")
-    @ResponseBody
-    public List<Product> getProducts() {
-        return productMessageSender.getProducts();
-    }
-
-    @GetMapping("/addProduct")
-    public Long addProduct(@RequestParam("name") String name, @RequestParam("description") String description,
-                           @RequestParam("unitPrice") Double unitPrice, @RequestParam("quantity") Integer quantity) {
-        Product product = new Product(name, description, unitPrice, quantity);
-        return productMessageSender.insertProduct(product);
+    public ModelAndView products(ModelMap model) {
+        model.addAttribute("products", productMessageSender.getProducts());
+        return new ModelAndView("products");
 
     }
+
+    @PostMapping("/addProduct")
+    public String addProduct(@ModelAttribute("product") Product product, ModelMap model) {
+        productMessageSender.insertProduct(product);
+        return "redirect:/managementController/product";
+    }
+
 
 }

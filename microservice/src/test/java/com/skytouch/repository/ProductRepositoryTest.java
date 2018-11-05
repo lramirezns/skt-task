@@ -1,10 +1,6 @@
 package com.skytouch.repository;
 
 import com.skytouch.model.ProductEntity;
-
-import java.util.ArrayList;
-import java.util.List;
-
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -14,6 +10,9 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.annotation.Rollback;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import static org.hamcrest.CoreMatchers.is;
 
@@ -28,12 +27,12 @@ public class ProductRepositoryTest {
     private ProductEntity productEntity;
 
     @Before
-    public void setupData(){
+    public void setupData() {
         productEntity = new ProductEntity("insertTest", "Unit Test", 1D, 1);
     }
 
     @Test
-    public void getAllProductsTest(){
+    public void getAllProductsTest() {
         ProductEntity firstRow = new ProductEntity("Keyboard", "Razer Keyboard", 50D, 2);
         ProductEntity secondRow = new ProductEntity("Mouse", "Microsoft Mouse", 20D, 6);
         ProductEntity thirdRow = new ProductEntity("Micro", "Microsoft micfrophone", 3D, 4);
@@ -43,7 +42,6 @@ public class ProductRepositoryTest {
         expectedResult.add(thirdRow);
         List<ProductEntity> products = productRepository.getProducts();
         Assert.assertThat(products, is(expectedResult));
-
     }
 
     @Test
