@@ -41,7 +41,7 @@ div {
         <div class="container">
             <h3>Products</h3>
             <form:form method="POST"
-              action="/managementController/addProduct" modelAttribute="product">
+              action="/addProduct" modelAttribute="product">
                  <table>
                     <tr>
                         <td><form:label path="name">Name</form:label></td>
@@ -64,7 +64,7 @@ div {
                     </tr>
                 </table>
             </form:form>
-            <td><input type="submit" class="button-secondary"  onclick="location.href='/managementController/products'" value="View Products"/></td>
+            <td><input type="submit" class="button-secondary"  onclick="location.href='/products'" value="View Products"/></td>
         </div>
     </body>
 </html>

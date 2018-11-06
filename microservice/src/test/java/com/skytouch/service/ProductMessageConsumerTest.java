@@ -8,6 +8,7 @@ import org.junit.runner.RunWith;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import java.math.BigDecimal;
 import java.util.Collections;
 import java.util.List;
 
@@ -26,12 +27,12 @@ public class ProductMessageConsumerTest {
 
     @Before
     public void setupData() {
-        product = new Product("insertTest", "Unit Test", 1D, 1);
+        product = new Product("MessageConsumerTest", "Unit Test", new BigDecimal("1.5"), 7);
         getProductsMessage = "getProducts";
         productService = mock(ProductService.class);
         when(productService.addProduct(product)).thenReturn(ID);
         List<Product> productList = Collections.singletonList(new Product
-                ("insertTest", "Unit Test", 1D, 1));
+                ("MessageConsumerTest", "Unit Test", new BigDecimal("1.5"), 7));
         when(productService.getProducts()).thenReturn(productList);
         consumer = new ProductMessageConsumerImpl(productService, getProductsMessage);
     }

@@ -19,22 +19,29 @@ managementApp/mvnw
 managementApp/mvnw.cmd
 
 
-*.class
-
-
 microservice/target/test-classes/application.properties
 managementApp/target/classes/application.yml
 
 #Microservice
-microservice/target/classes/application.yml
+microservice/target/**
 microservice/mvnw
 microservice/mvnw.cmd
 microservice/.DS_Store
 
+#ManagmentApp
+managementApp/target/**
+managementApp/managementApp.iml
+
+
+# common
+common/target/**
+
+Files
 *.iml
-common/target/common-library-0.0.1-SNAPSHOT.jar
-common/target/common-library-0.0.1-SNAPSHOT.jar.original
+*.class
 *.lst
-common/target/maven-archiver/pom.properties
 *.war
 *.original
+
+
+

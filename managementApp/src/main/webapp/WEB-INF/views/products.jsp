@@ -44,7 +44,7 @@ input[type=submit]:hover {
         </head>
         <body>
             <h3>Products</h3>
-            <td><input type="submit" class="button-secondary"  onclick="location.href='/managementController/product'" value="create product"/></td>
+            <td><input type="submit" class="button-secondary"  onclick="location.href='/product'" value="create product"/></td>
             <table id="products">
                 <tr>
                     <th>PRODUCT ID</th>

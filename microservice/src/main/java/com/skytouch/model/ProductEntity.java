@@ -3,6 +3,7 @@ package com.skytouch.model;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.math.BigDecimal;
 import java.util.Objects;
 
 @Entity
@@ -18,7 +19,7 @@ import java.util.Objects;
                 parameters = {
                         @StoredProcedureParameter(mode = ParameterMode.IN, name = "p_name", type = String.class),
                         @StoredProcedureParameter(mode = ParameterMode.IN, name = "p_description", type = String.class),
-                        @StoredProcedureParameter(mode = ParameterMode.IN, name = "p_unit_price", type = Double.class),
+                        @StoredProcedureParameter(mode = ParameterMode.IN, name = "p_unit_price", type = BigDecimal.class),
                         @StoredProcedureParameter(mode = ParameterMode.IN, name = "p_quantity", type = Integer.class)
                 }
         )
@@ -37,12 +38,12 @@ public class ProductEntity implements Serializable {
     private String description;
 
     @Column(name = "unit_price")
-    private double unitPrice;
+    private BigDecimal unitPrice;
 
     @Column(name = "quantity_per_unit")
     private int quantityPerUnit;
 
-    public ProductEntity(String name, String description, double unitPrice, int quantityPerUnit) {
+    public ProductEntity(String name, String description, BigDecimal unitPrice, int quantityPerUnit) {
         this.name = name;
         this.description = description;
         this.unitPrice = unitPrice;
@@ -64,7 +65,7 @@ public class ProductEntity implements Serializable {
         return description;
     }
 
-    public double getUnitPrice() {
+    public BigDecimal getUnitPrice() {
         return unitPrice;
     }
 
@@ -84,7 +85,7 @@ public class ProductEntity implements Serializable {
         this.description = description;
     }
 
-    public void setUnitPrice(double unitPrice) {
+    public void setUnitPrice(BigDecimal unitPrice) {
         this.unitPrice = unitPrice;
     }
 
@@ -97,10 +98,10 @@ public class ProductEntity implements Serializable {
         if (this == o) return true;
         if (!(o instanceof ProductEntity)) return false;
         ProductEntity that = (ProductEntity) o;
-        return Double.compare(that.unitPrice, unitPrice) == 0 &&
-                quantityPerUnit == that.quantityPerUnit &&
+        return quantityPerUnit == that.quantityPerUnit &&
                 Objects.equals(name, that.name) &&
-                Objects.equals(description, that.description);
+                Objects.equals(description, that.description) &&
+                Objects.equals(unitPrice, that.unitPrice);
     }
 
     @Override

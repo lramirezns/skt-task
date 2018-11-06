@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
-@RequestMapping("/managementController")
+
 @Controller
 public class ManagmentController {
     private ProductMessageSender productMessageSender;
@@ -35,7 +35,7 @@ public class ManagmentController {
     @PostMapping("/addProduct")
     public String addProduct(@ModelAttribute("product") Product product, ModelMap model) {
         productMessageSender.insertProduct(product);
-        return "redirect:/managementController/product";
+        return "redirect:/product";
     }
 
 

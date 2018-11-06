@@ -7,35 +7,28 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.annotation.Rollback;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
 import static org.hamcrest.CoreMatchers.is;
 
 
-@Transactional
-@Rollback
+
 @RunWith(SpringRunner.class)
 @SpringBootTest
 public class ProductRepositoryTest {
     @Autowired
     private ProductRepository productRepository;
-    private ProductEntity productEntity;
-
-    @Before
-    public void setupData() {
-        productEntity = new ProductEntity("insertTest", "Unit Test", 1D, 1);
-    }
 
     @Test
     public void getAllProductsTest() {
-        ProductEntity firstRow = new ProductEntity("Keyboard", "Razer Keyboard", 50D, 2);
-        ProductEntity secondRow = new ProductEntity("Mouse", "Microsoft Mouse", 20D, 6);
-        ProductEntity thirdRow = new ProductEntity("Micro", "Microsoft micfrophone", 3D, 4);
+        ProductEntity firstRow = new ProductEntity("Keyboard", "Razer Keyboard", new BigDecimal("50"), 2);
+        ProductEntity secondRow = new ProductEntity("Mouse", "Microsoft Mouse", new BigDecimal("20"), 6);
+        ProductEntity thirdRow = new ProductEntity("Micro", "Microsoft micfrophone", new BigDecimal("3"), 4);
         List<ProductEntity> expectedResult = new ArrayList<>();
         expectedResult.add(firstRow);
         expectedResult.add(secondRow);
@@ -44,8 +37,10 @@ public class ProductRepositoryTest {
         Assert.assertThat(products, is(expectedResult));
     }
 
+    @Transactional
     @Test
     public void insertProduct() {
+        ProductEntity productEntity = new ProductEntity("repositoryTest", "Unit Test", new BigDecimal("1.5"), 35);
         Long id = productRepository.addProduct(productEntity);
         ProductEntity result = productRepository.findOne(id);
         Assert.assertEquals(productEntity, result);

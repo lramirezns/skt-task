@@ -5,7 +5,7 @@ CREATE TABLE product
     id integer NOT NULL DEFAULT nextval('product_id_seq'),
     name character varying(50) COLLATE pg_catalog."default" NOT NULL,
     description character varying(500) COLLATE pg_catalog."default",
-    unit_price double precision NOT NULL,
+    unit_price numeric NOT NULL,
     quantity_per_unit integer NOT NULL,
     CONSTRAINT product_pkey PRIMARY KEY (id)
 );
@@ -13,7 +13,7 @@ CREATE TABLE product
 
 CREATE OR REPLACE FUNCTION get_products(
 	)
-    RETURNS TABLE(id integer, name character varying, description character varying, unit_price double precision, quantity_per_unit integer) 
+    RETURNS TABLE(id integer, name character varying, description character varying, unit_price numeric, quantity_per_unit integer)
     LANGUAGE 'plpgsql'
 
     COST 100
@@ -31,9 +31,9 @@ $BODY$;
 CREATE OR REPLACE FUNCTION insert_product(
 	p_name character varying,
 	p_description character varying,
-	p_unit_price double precision,
+	p_unit_price numeric,
 	p_quantity integer)
-    RETURNS TABLE(id integer, name character varying, description character varying, unit_price double precision, quantity_per_unit integer) 
+    RETURNS TABLE(id integer, name character varying, description character varying, unit_price numeric, quantity_per_unit integer)
     LANGUAGE 'plpgsql'
 
     COST 100

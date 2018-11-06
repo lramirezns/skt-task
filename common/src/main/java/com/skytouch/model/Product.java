@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 import java.io.Serializable;
+import java.math.BigDecimal;
 import java.util.Objects;
 
 
@@ -17,11 +18,11 @@ public class Product implements Serializable {
 
     private String description;
 
-    private double unitPrice;
+    private BigDecimal unitPrice;
 
     private int quantityPerUnit;
 
-    public Product(String name, String description, double unitPrice, int quantityPerUnit) {
+    public Product(String name, String description, BigDecimal unitPrice, int quantityPerUnit) {
         this.name = name;
         this.description = description;
         this.unitPrice = unitPrice;
@@ -43,7 +44,7 @@ public class Product implements Serializable {
         return description;
     }
 
-    public double getUnitPrice() {
+    public BigDecimal getUnitPrice() {
         return unitPrice;
     }
 
@@ -67,7 +68,7 @@ public class Product implements Serializable {
         this.description = description;
     }
 
-    public void setUnitPrice(double unitPrice) {
+    public void setUnitPrice(BigDecimal unitPrice) {
         this.unitPrice = unitPrice;
     }
 
@@ -80,10 +81,10 @@ public class Product implements Serializable {
         if (this == o) return true;
         if (!(o instanceof Product)) return false;
         Product product = (Product) o;
-        return Double.compare(product.unitPrice, unitPrice) == 0 &&
-                quantityPerUnit == product.quantityPerUnit &&
+        return quantityPerUnit == product.quantityPerUnit &&
                 Objects.equals(name, product.name) &&
-                Objects.equals(description, product.description);
+                Objects.equals(description, product.description) &&
+                Objects.equals(unitPrice, product.unitPrice);
     }
 
     @Override
