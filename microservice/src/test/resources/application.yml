@@ -1,0 +1,34 @@
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5433/skt_task_v
+    username: postgres
+    password: wertyta13
+
+  jpa:
+    database: POSTGRESQL
+    database-platform: org.hibernate.dialect.PostgreSQL9Dialect
+    show-sql: true
+    generate-ddl: true
+
+    properties:
+      hibernate:
+        default_schema: public
+        format_sql: true
+        temp.use_jdbc_metadata_defaults: false
+  rabbitmq:
+    host: localhost
+    port: 5672
+    username: guest
+    password: guest
+product:
+  rabbitmq:
+    insertExchange: product-exchange
+    insertQueue: insertProduct-queue
+    insertRoutingkey: insertRoutingkey
+    getProductsExchange: getProductsExchange
+    getProductsQueue: getProductsQueue
+    getProductsRoutingkey: getProductsRoutingkey
+    getProductsMessage: getProducts
+
+server.port: 4000
+

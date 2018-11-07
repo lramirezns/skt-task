@@ -1,0 +1,47 @@
+# Idea Folder
+
+**.idea/**
+.idea/workspace.xml
+.idea/*
+
+# target folder
+
+/target/**
+**/.DS_Store
+common/target/.DS_Store
+
+# Maven
+
+/mvnw
+/mvnw.cmd
+mvnw/*
+managementApp/mvnw
+managementApp/mvnw.cmd
+
+
+microservice/target/test-classes/application.properties
+managementApp/target/classes/application.yml
+
+#Microservice
+microservice/target/**
+microservice/mvnw
+microservice/mvnw.cmd
+microservice/.DS_Store
+
+#ManagmentApp
+managementApp/target/**
+managementApp/managementApp.iml
+
+
+# common
+common/target/**
+
+Files
+*.iml
+*.class
+*.lst
+*.war
+*.original
+
+
+
