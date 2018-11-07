@@ -9,7 +9,7 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
-public class ProductMessageSenderImpl implements ProductMessageSender {
+class ProductMessageSenderImpl implements ProductMessageSender {
 
     @Autowired
     private AmqpTemplate amqpTemplate;
@@ -26,16 +26,15 @@ public class ProductMessageSenderImpl implements ProductMessageSender {
     @Value("${product.rabbitmq.getProductsRoutingkey}")
     private String getProductsRoutingkey;
 
-    @Value("${product.rabbitmq.getProductsQueue}")
-    private String getProductsQueue;
-
     @Value("${product.rabbitmq.getProductsMessage}")
     private String getProductsMessage;
 
     @Override
     public void insertProduct(Product product) {
         Long id = (Long) amqpTemplate.convertSendAndReceive(insertExchange, insertRoutingkey, product);
-        if (id == 0) throw new RuntimeException();
+        if (id == 0){
+            throw new RuntimeException();
+        }
     }
 
     @Override

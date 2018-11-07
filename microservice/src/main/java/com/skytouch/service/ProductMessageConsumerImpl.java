@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
-public class ProductMessageConsumerImpl implements ProductMessageConsumer {
+class ProductMessageConsumerImpl implements ProductMessageConsumer {
 
     private final ProductService productService;
 
@@ -21,7 +21,7 @@ public class ProductMessageConsumerImpl implements ProductMessageConsumer {
 
     @Override
     @RabbitListener(queues = "${product.rabbitmq.insertQueue}", containerFactory = "productFactory")
-    public Long receiveProduct(Product product) {
+    public long receiveProduct(Product product) {
         return productService.addProduct(product);
     }
 

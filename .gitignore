@@ -7,7 +7,7 @@
 # target folder
 
 /target/**
-/.DS_Store
+**/.DS_Store
 common/target/.DS_Store
 
 # Maven

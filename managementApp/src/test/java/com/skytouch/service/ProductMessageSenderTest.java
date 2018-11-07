@@ -3,7 +3,6 @@ package com.skytouch.service;
 
 import com.skytouch.model.Product;
 import org.junit.Assert;
-import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.amqp.core.AmqpTemplate;
@@ -21,11 +20,6 @@ import static org.mockito.Mockito.when;
 @SpringBootTest
 public class ProductMessageSenderTest {
 
-
-    @Before
-    public void setupData() {
-    }
-
     @Test
     public void testGetProducts() {
         final String productName = "insertTest";
@@ -34,5 +28,6 @@ public class ProductMessageSenderTest {
         AmqpTemplate template = mock(AmqpTemplate.class);
         when(template.convertSendAndReceive("getProducts")).thenReturn(productList);
         Assert.assertEquals(productName, productList.get(0).getName());
+
     }
 }

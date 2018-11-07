@@ -15,11 +15,11 @@ public interface ProductMessageConsumer {
      * @param product
      * @return the id of this created product.
      */
-    public Long receiveProduct(Product product);
+    public long receiveProduct(Product product);
 
     /**
      * Recives and validates a message, if is valid, return all de products from the database.
-     * @param message
+     * @param message this message should be the same as message defined in application.yml (product.rabbitmq.getProductsMessage)
      * @return all the products from the database
      */
     public List<Product> getProducts(String message);

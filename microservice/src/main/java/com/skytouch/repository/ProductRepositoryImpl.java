@@ -6,7 +6,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.StoredProcedureQuery;
 import java.util.List;
 
-public class ProductRepositoryImpl implements ProductRepositoryCustom {
+class ProductRepositoryImpl implements ProductRepositoryCustom {
 
     private final EntityManager entityManager;
 

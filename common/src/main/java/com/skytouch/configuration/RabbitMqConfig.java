@@ -12,66 +12,54 @@ import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.amqp.support.converter.Jackson2JsonMessageConverter;
 import org.springframework.amqp.support.converter.MessageConverter;
 import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.autoconfigure.amqp.SimpleRabbitListenerContainerFactoryConfigurer;
+import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 
 @Configuration
-public class RabbitMqConfig {
+@EnableConfigurationProperties(RabbitConfigurationProperties.class)
+class RabbitMqConfig {
 
+    RabbitConfigurationProperties configurationProperties;
 
-    @Value("${product.rabbitmq.insertQueue}")
-    String insertQueueName;
-
-    @Value("${product.rabbitmq.insertExchange}")
-    String insertExchange;
-
-    @Value("${product.rabbitmq.insertRoutingkey}")
-    private String insertRoutingkey;
-
-    @Value("${product.rabbitmq.getProductsExchange}")
-    String getProductsExchange;
-
-    @Value("${product.rabbitmq.getProductsQueue}")
-    String getProductsQueueName;
-
-    @Value("${product.rabbitmq.getProductsRoutingkey}")
-    private String getProductsRoutingkey;
+    RabbitMqConfig(RabbitConfigurationProperties configurationProperties){
+        this.configurationProperties = configurationProperties;
+    }
 
     @Bean
     @Qualifier("insertQueue")
     Queue insertQueue() {
-        return new Queue(insertQueueName, false);
+        return new Queue(configurationProperties.getInsertQueue(), false);
     }
 
     @Bean
     @Qualifier("getProductsQueue")
     Queue getProductsQueue() {
-        return new Queue(getProductsQueueName, false);
+        return new Queue(configurationProperties.getGetProductsQueue(), false);
     }
 
     @Bean
     @Qualifier("insertExchange")
     DirectExchange insertExchange() {
-        return new DirectExchange(insertExchange);
+        return new DirectExchange(configurationProperties.getInsertExchange());
     }
 
     @Bean
     @Qualifier("getProductsExchange")
     DirectExchange getProductsExchange() {
-        return new DirectExchange(getProductsExchange);
+        return new DirectExchange(configurationProperties.getGetProductsExchange());
     }
 
     @Bean
     Binding insertBinding(@Qualifier("insertQueue") Queue queue, @Qualifier("insertExchange") DirectExchange exchange) {
-        return BindingBuilder.bind(queue).to(exchange).with(insertRoutingkey);
+        return BindingBuilder.bind(queue).to(exchange).with(configurationProperties.getInsertRoutingkey());
     }
 
     @Bean
     Binding getProductsBinding(@Qualifier("getProductsQueue") Queue queue, @Qualifier("getProductsExchange") DirectExchange exchange) {
-        return BindingBuilder.bind(queue).to(exchange).with(getProductsRoutingkey);
+        return BindingBuilder.bind(queue).to(exchange).with(configurationProperties.getGetProductsRoutingkey());
     }
 
 
